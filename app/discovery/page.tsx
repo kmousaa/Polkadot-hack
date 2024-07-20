@@ -17,7 +17,7 @@ export default function Page() {
         <div className="p-4">
             <Card 
                 title="John Doe's Fundraiser" 
-                profilePicture="https://via.placeholder.com/150"
+                profilePicture="https://avatar.iran.liara.run/public/1"
                 initialMilestones={milestones}
                 brief="Help John Doe raise funds for his new project."
             />
