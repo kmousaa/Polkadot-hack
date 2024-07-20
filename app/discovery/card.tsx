@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from 'react';
 import { Button, Tooltip, Input } from '@nextui-org/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleDollarToSlot } from '@fortawesome/free-solid-svg-icons';
 
 // Define a type for Milestone
 type Milestone = {
@@ -21,30 +23,36 @@ export default function Card({ title, profilePicture, initialMilestones, brief }
     const [milestones, setMilestones] = useState<Milestone[]>(initialMilestones);
     const [selectedMilestoneId, setSelectedMilestoneId] = useState<string | null>(null);
     const [donationAmount, setDonationAmount] = useState<number>(0);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     // Function to handle milestone selection
     const handleMilestoneSelect = (id: string) => {
         setSelectedMilestoneId(id);
+        setErrorMessage(null); // Clear error message on milestone selection
     };
 
     // Function to handle donation
     const handleDonation = () => {
-        if (selectedMilestoneId) {
-            const updatedMilestones = milestones.map(milestone => {
-                if (milestone.id === selectedMilestoneId) {
-                    const updatedCurrent = Math.min(milestone.goal, milestone.current + donationAmount);
-                    if (updatedCurrent === milestone.goal) {
-                        console.log(`Milestone ${milestone.id} is fully funded.`);
-                    }
-                    console.log(`Donated ${donationAmount} DOT to milestone ${milestone.id}. Current: ${updatedCurrent}, Goal: ${milestone.goal}`);
-                    return { ...milestone, current: updatedCurrent };
-                }
-                return milestone;
-            });
-
-            setMilestones(updatedMilestones);
-            setDonationAmount(0);
+        if (!selectedMilestoneId) {
+            setErrorMessage('Please select a milestone to donate.');
+            return;
         }
+
+        const updatedMilestones = milestones.map(milestone => {
+            if (milestone.id === selectedMilestoneId) {
+                const updatedCurrent = Math.min(milestone.goal, milestone.current + donationAmount);
+                if (updatedCurrent === milestone.goal) {
+                    console.log(`Milestone ${milestone.id} is fully funded. Any extra not added.`);
+                }
+                console.log(`Donated ${donationAmount} DOT to milestone ${milestone.id}. Current: ${updatedCurrent}, Goal: ${milestone.goal}`);
+                return { ...milestone, current: updatedCurrent };
+            }
+            return milestone;
+        });
+
+        setMilestones(updatedMilestones);
+        setDonationAmount(0);
+        setErrorMessage(null); // Clear error message after successful donation
     };
 
     // Calculate the overall progress of all milestones
@@ -67,7 +75,7 @@ export default function Card({ title, profilePicture, initialMilestones, brief }
             <div className="flex-grow">
                 <div className="relative w-full h-4 mt-4">
                     <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-300 rounded" />
-                    <div className="absolute top-1/2 left-0 h-1 bg-blue-500 rounded" 
+                    <div className="absolute top-1/2 left-0 h-1 bg-primary rounded" 
                         style={{ width: `${totalProgress}%` }}
                     />
                     {milestones.map((milestone, index) => {
@@ -76,14 +84,14 @@ export default function Card({ title, profilePicture, initialMilestones, brief }
                         return (
                             <Tooltip content={`${milestone.current.toFixed(2)} DOT out of ${milestone.goal.toFixed(2)} DOT`} key={milestone.id}>
                                 <div
-                                    className={`absolute top-1/2 transform -translate-y-1/2 cursor-pointer ${isSelected ? 'ring-2 ring-blue-500' : ''}`}
+                                    className={`absolute top-1/2 transform -translate-y-1/2 cursor-pointer ${isSelected ? 'ring-2 ring-primary-500' : ''}`}
                                     style={{ left: `${(index / (milestones.length - 1)) * 100}%` }}
                                     onClick={() => handleMilestoneSelect(milestone.id)}
                                 >
                                     <div
                                         className="relative w-6 h-6 rounded-full border-2 border-gray-300 flex items-center justify-center"
                                         style={{
-                                            background: `conic-gradient(#0072F5 ${fillPercentage}%, #E0E0E0 ${fillPercentage}% 100%)`,
+                                            background: `conic-gradient(#9d7cf9 ${fillPercentage}%, #E0E0E0 ${fillPercentage}% 100%)`,
                                             transition: 'background 0.3s'
                                         }}
                                     >
@@ -106,6 +114,7 @@ export default function Card({ title, profilePicture, initialMilestones, brief }
                         className="flex-1"
                         disabled={!selectedMilestoneId}
                     />
+                    
                     <Button 
                         auto 
                         color="primary" 
@@ -114,9 +123,15 @@ export default function Card({ title, profilePicture, initialMilestones, brief }
                         onClick={handleDonation}
                         disabled={!selectedMilestoneId || donationAmount <= 0}
                     >
-                        Donate
+                        Donate 
+                        <FontAwesomeIcon icon={faCircleDollarToSlot} className="ml-2" />
                     </Button>
                 </div>
+                {errorMessage && (
+                    <div className="text-red-500 mt-2">
+                        {errorMessage}
+                    </div>
+                )}
             </div>
 
             <div className="mt-4 text-sm text-gray-600 max-h-20 overflow-y-auto">
