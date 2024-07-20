@@ -26,14 +26,14 @@ module.exports = {
         dark: {
           colors: {
             primary: {
-              DEFAULT: "#9d7cf9",
+              DEFAULT: "#1d1a29",
               foreground: "#fbfaff",
             },
             secondary: {
               DEFAULT: "#7f079e",
               foreground: "#fbfaff",
             },
-            focus: "#9d7cf9",
+            focus: "#1d1a29",
           },
         },
       },

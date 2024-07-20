@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Button, Tooltip, Input } from '@nextui-org/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleDollarToSlot } from '@fortawesome/free-solid-svg-icons';
+import { Divider } from '@nextui-org/react';
+
 
 // Define a type for Milestone
 type Milestone = {
@@ -64,7 +66,7 @@ export default function Card({ title, profilePicture, initialMilestones, brief }
     return (
         <div className="bg-light-background shadow-lg rounded-lg p-4 flex flex-col space-y-4 w-[40rem] max-h-[500px] pr-10">
             <div className="flex justify-between items-start">
-                <h1 className="text-lg font-semibold text-black">{title}</h1>
+                <h1 className="text-lg font-semibold font-bold text-white">{title}</h1>
                 <img 
                     src={profilePicture} 
                     alt="Profile Picture" 
@@ -103,7 +105,7 @@ export default function Card({ title, profilePicture, initialMilestones, brief }
                     })}
                 </div>
                 
-                <div className="mt-4 flex items-center space-x-2">
+                <div className="mt-4 flex items-center space-x-2 foreground">
                     <Input
                         type="number"
                         value={donationAmount}
@@ -114,10 +116,12 @@ export default function Card({ title, profilePicture, initialMilestones, brief }
                         className="flex-1"
                         disabled={!selectedMilestoneId}
                     />
-                    
+
+     
                     <Button 
                         auto 
                         color="primary" 
+                        variant="flat"
                         shadow 
                         size="lg"
                         onClick={handleDonation}
@@ -133,8 +137,9 @@ export default function Card({ title, profilePicture, initialMilestones, brief }
                     </div>
                 )}
             </div>
-
-            <div className="mt-4 text-sm text-gray-600 max-h-20 overflow-y-auto">
+        
+            <Divider />
+            <div className="mt-4 text-small text-default-500 max-h-20 overflow-y-auto">
                 <p>{brief}</p>
             </div>
         </div>
