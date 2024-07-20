@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Button, Slider, Tooltip } from '@nextui-org/react';
+import { Button, Tooltip, Input } from '@nextui-org/react';
 
 // Define a type for Milestone
 type Milestone = {
@@ -14,9 +14,10 @@ interface CardProps {
     title: string;
     profilePicture: string;
     initialMilestones: Milestone[];
+    brief: string; // Added brief prop
 }
 
-export default function Card({ title, profilePicture, initialMilestones }: CardProps) {
+export default function Card({ title, profilePicture, initialMilestones, brief }: CardProps) {
     const [milestones, setMilestones] = useState<Milestone[]>(initialMilestones);
     const [selectedMilestoneId, setSelectedMilestoneId] = useState<string | null>(null);
     const [donationAmount, setDonationAmount] = useState<number>(0);
@@ -29,21 +30,19 @@ export default function Card({ title, profilePicture, initialMilestones }: CardP
     // Function to handle donation
     const handleDonation = () => {
         if (selectedMilestoneId) {
-            // Update the selected milestone
             const updatedMilestones = milestones.map(milestone => {
                 if (milestone.id === selectedMilestoneId) {
-                    return {
-                        ...milestone,
-                        current: Math.min(milestone.goal, milestone.current + donationAmount)
-                    };
+                    const updatedCurrent = Math.min(milestone.goal, milestone.current + donationAmount);
+                    if (updatedCurrent === milestone.goal) {
+                        console.log(`Milestone ${milestone.id} is fully funded.`);
+                    }
+                    console.log(`Donated ${donationAmount} DOT to milestone ${milestone.id}. Current: ${updatedCurrent}, Goal: ${milestone.goal}`);
+                    return { ...milestone, current: updatedCurrent };
                 }
                 return milestone;
             });
 
-            // Update the local state
             setMilestones(updatedMilestones);
-
-            // Reset donation amount
             setDonationAmount(0);
         }
     };
@@ -55,9 +54,9 @@ export default function Card({ title, profilePicture, initialMilestones }: CardP
     }, 0);
 
     return (
-        <div className="bg-white shadow-lg rounded-lg p-4 flex flex-col space-y-4 w-80">
+        <div className="bg-white shadow-lg rounded-lg p-4 flex flex-col space-y-4 w-[30rem] max-h-[500px] pr-10">
             <div className="flex justify-between items-start">
-                <h1 className="text-lg font-semibold">{title}</h1>
+                <h1 className="text-lg font-semibold text-black">{title}</h1>
                 <img 
                     src={profilePicture} 
                     alt="Profile Picture" 
@@ -73,17 +72,19 @@ export default function Card({ title, profilePicture, initialMilestones }: CardP
                     />
                     {milestones.map((milestone, index) => {
                         const fillPercentage = (milestone.current / milestone.goal) * 100;
+                        const isSelected = milestone.id === selectedMilestoneId;
                         return (
-                            <Tooltip content={`${Math.min(fillPercentage, 100).toFixed(0)}%`} key={milestone.id}>
+                            <Tooltip content={`${milestone.current.toFixed(2)} DOT out of ${milestone.goal.toFixed(2)} DOT`} key={milestone.id}>
                                 <div
-                                    className="absolute top-1/2 transform -translate-y-1/2 cursor-pointer"
+                                    className={`absolute top-1/2 transform -translate-y-1/2 cursor-pointer ${isSelected ? 'ring-2 ring-blue-500' : ''}`}
                                     style={{ left: `${(index / (milestones.length - 1)) * 100}%` }}
                                     onClick={() => handleMilestoneSelect(milestone.id)}
                                 >
                                     <div
                                         className="relative w-6 h-6 rounded-full border-2 border-gray-300 flex items-center justify-center"
                                         style={{
-                                            background: `conic-gradient(#0072F5 ${fillPercentage}%, #E0E0E0 ${fillPercentage}% 100%)`
+                                            background: `conic-gradient(#0072F5 ${fillPercentage}%, #E0E0E0 ${fillPercentage}% 100%)`,
+                                            transition: 'background 0.3s'
                                         }}
                                     >
                                         {milestone.current >= milestone.goal ? '✓' : ''}
@@ -94,31 +95,33 @@ export default function Card({ title, profilePicture, initialMilestones }: CardP
                     })}
                 </div>
                 
-                {selectedMilestoneId && (
-                    <div className="mt-4">
-                        <Slider
-                            value={donationAmount}
-                            onChange={(value) => setDonationAmount(value)}
-                            aria-label="Donation Amount"
-                            color="primary"
-                            size="lg"
-                            className="w-full"
-                        />
-                    </div>
-                )}
+                <div className="mt-4 flex items-center space-x-2">
+                    <Input
+                        type="number"
+                        value={donationAmount}
+                        onChange={(e) => setDonationAmount(Number(e.target.value))}
+                        placeholder="Enter DOT amount"
+                        min={0}
+                        step={0.1}
+                        className="flex-1"
+                        disabled={!selectedMilestoneId}
+                    />
+                    <Button 
+                        auto 
+                        color="primary" 
+                        shadow 
+                        size="lg"
+                        onClick={handleDonation}
+                        disabled={!selectedMilestoneId || donationAmount <= 0}
+                    >
+                        Donate
+                    </Button>
+                </div>
             </div>
-            
-            <Button 
-                className="w-full" 
-                auto 
-                color="primary" 
-                shadow 
-                size="lg"
-                onClick={handleDonation}
-                disabled={!selectedMilestoneId}
-            >
-                Donate
-            </Button>
+
+            <div className="mt-4 text-sm text-gray-600 max-h-20 overflow-y-auto">
+                <p>{brief}</p>
+            </div>
         </div>
     );
 }
