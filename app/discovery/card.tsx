@@ -62,7 +62,7 @@ export default function Card({ title, profilePicture, initialMilestones, brief }
     }, 0);
 
     return (
-        <div className="bg-white shadow-lg rounded-lg p-4 flex flex-col space-y-4 w-[30rem] max-h-[500px] pr-10">
+        <div className="bg-light-background shadow-lg rounded-lg p-4 flex flex-col space-y-4 w-[40rem] max-h-[500px] pr-10">
             <div className="flex justify-between items-start">
                 <h1 className="text-lg font-semibold text-black">{title}</h1>
                 <img 

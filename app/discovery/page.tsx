@@ -43,9 +43,21 @@ const users = [
 
 export default function Page() {
     return (
-        <div className="flex p-4 space-x-4">
-            {/* Left column with scrollable cards */}
-            <div className="w-3/4 overflow-y-scroll h-screen pr-4 space-y-4">
+        <div className="flex p-4 space-x-4 mt-40">
+            {/* Left column with hashtags */}
+            <div className="w-1/6 h-screen sticky top-0 p-4 bg-white shadow-lg rounded-lg space-y-2">
+                <h2 className="text-xl font-semibold mb-4">Hashtags</h2>
+                {['MUSIC', 'PROJECT', 'CHARITY', 'EDUCATION', 'TECHNOLOGY', 'ART', 'SPORTS'].map((tag, index) => (
+                    <div key={index} className="text-blue-500 cursor-pointer hover:underline">
+                        #{tag}
+                    </div>
+                ))}
+            </div>
+
+            <div className="w-1/6 h-screen sticky top-0 p-4 bg-white shadow-lg rounded-lg space-y-2"> </div>
+            
+            {/* Right column with scrollable cards */}
+            <div className="w-5/6 overflow-y-scroll h-screen space-y-4 ">
                 {users.map((user, index) => (
                     <Card 
                         key={index}
@@ -54,15 +66,6 @@ export default function Page() {
                         initialMilestones={user.milestones}
                         brief={user.brief}
                     />
-                ))}
-            </div>
-            {/* Right column with hashtags */}
-            <div className="w-1/4 h-screen sticky top-0 p-4 bg-white shadow-lg rounded-lg space-y-2">
-                <h2 className="text-xl font-semibold">Hashtags</h2>
-                {['MUSIC', 'PROJECT', 'CHARITY', 'EDUCATION', 'TECHNOLOGY', 'ART', 'SPORTS'].map((tag, index) => (
-                    <div key={index} className="text-blue-500 cursor-pointer hover:underline">
-                        #{tag}
-                    </div>
                 ))}
             </div>
         </div>
