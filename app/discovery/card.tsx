@@ -19,9 +19,10 @@ interface CardProps {
     profilePicture: string;
     initialMilestones: Milestone[];
     brief: string; // Added brief prop
+    tags?: string[]; // Added tags prop
 }
 
-export default function Card({ title, profilePicture, initialMilestones, brief }: CardProps) {
+export default function Card({ title, profilePicture, initialMilestones, brief, tags }: CardProps) {
     const [milestones, setMilestones] = useState<Milestone[]>(initialMilestones);
     const [selectedMilestoneId, setSelectedMilestoneId] = useState<string | null>(null);
     const [donationAmount, setDonationAmount] = useState<number>(0);
@@ -64,7 +65,7 @@ export default function Card({ title, profilePicture, initialMilestones, brief }
     }, 0);
 
     return (
-        <div className="bg-light-background shadow-lg rounded-lg p-4 flex flex-col space-y-4 w-[40rem] max-h-[500px] pr-10">
+        <div className="bg-light-background shadow-lg rounded-lg p-4 flex flex-col space-y-4 w-[40rem] max-h-[500px] pr-10 mb-6">
             <div className="flex justify-between items-start">
                 <h1 className="text-lg font-semibold font-bold text-white">{title}</h1>
                 <img 
@@ -141,6 +142,23 @@ export default function Card({ title, profilePicture, initialMilestones, brief }
             <Divider />
             <div className="mt-4 text-small text-default-500 max-h-20 overflow-y-auto">
                 <p>{brief}</p>
+     
+                {/* show the tags list  */}
+                <div className="flex flex-wrap gap-2 mt-2">
+                    {tags?.map((tag, index) => (
+                        <Button 
+                            key={index} 
+                            color="primary" 
+                            variant="flat" 
+                            size="sm" 
+                        >
+                            #{tag}
+                        </Button>
+                    ))}
+                </div>
+
+                    
+
             </div>
         </div>
     );
