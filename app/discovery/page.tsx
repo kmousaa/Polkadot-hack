@@ -14,6 +14,8 @@ const tags = [
 const users = [
   {
     "title": "Pink Sea - Album Release",
+    "userName": "Pink Sea",
+    "ranking": 5,
     "profilePicture": "https://avatar.iran.liara.run/public/1",
     "milestones": [
       {
@@ -52,6 +54,8 @@ const users = [
   },
   {
     "title": "Web3 Platformer Development",
+    "userName": "SLACK",
+    "Ranking": 1,
     "profilePicture": "https://avatar.iran.liara.run/public/2",
     "milestones": [
       {
@@ -90,6 +94,8 @@ const users = [
   },
   {
     "title": "Fundraiser for Less Fortunate Children",
+    "userName": "Save The World ",
+    "Ranking": 4,
     "profilePicture": "https://avatar.iran.liara.run/public/3",
     "milestones": [
       {
@@ -128,6 +134,8 @@ const users = [
   },
   {
     "title": "The Weekday - Deluxe Album Fundraiser",
+    "userName": "The Weekday",
+    "Ranking": 3,
     "profilePicture": "https://avatar.iran.liara.run/public/4",
     "milestones": [
       {
@@ -166,6 +174,8 @@ const users = [
   },
   {
     "title": "Blockchain Tech Startup",
+    "userName": "Drip & Chain",
+    "Ranking": 2,
     "profilePicture": "https://avatar.iran.liara.run/public/5",
     "milestones": [
       {
@@ -204,6 +214,8 @@ const users = [
   },
   {
     "title": "Old Gunners Football Club - Stadium Fundraiser",
+    "userName": "Old Gunners",
+    "Ranking": 5,
     "profilePicture": "https://avatar.iran.liara.run/public/6",
     "milestones": [
       {
@@ -242,6 +254,8 @@ const users = [
   },
   {
     "title": "Exotic Birds Conservation Project",
+    "userName": "Birds of Paradise",
+    "Ranking": 4,
     "profilePicture": "https://avatar.iran.liara.run/public/7",
     "milestones": [
       {
@@ -349,6 +363,9 @@ export default function Page() {
               initialMilestones={user.milestones}
               brief={user.brief}
               tags={user.tags}
+              userName={user.userName}
+              ranking={user.ranking}
+
             />
           </div>
         ))}
