@@ -288,6 +288,7 @@ export default function Page() {
                             initialMilestones={user.milestones}
                             brief={user.brief}
                             tags={user.tags}
+                 
                         />
                     </div>
                 ))}

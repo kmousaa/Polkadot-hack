@@ -11,6 +11,7 @@ type Milestone = {
     id: string;
     goal: number;
     current: number;
+    notes: string;
 };
 
 // Define the Card component props
@@ -19,7 +20,8 @@ interface CardProps {
     profilePicture: string;
     initialMilestones: Milestone[];
     brief: string; // Added brief prop
-    tags?: string[]; // Added tags prop
+    tags: string[]; // Added tags prop
+
 }
 
 export default function Card({ title, profilePicture, initialMilestones, brief, tags }: CardProps) {
@@ -85,7 +87,16 @@ export default function Card({ title, profilePicture, initialMilestones, brief, 
                         const fillPercentage = (milestone.current / milestone.goal) * 100;
                         const isSelected = milestone.id === selectedMilestoneId;
                         return (
-                            <Tooltip content={`${milestone.current.toFixed(2)} DOT out of ${milestone.goal.toFixed(2)} DOT`} key={milestone.id}>
+                            <Tooltip
+                            content={
+                                <div className="p-2 bg-gray-800 text-white rounded">
+                                    <p className="font-semibold">{milestone.current.toFixed(2)} DOT out of {milestone.goal.toFixed(2)} DOT</p>
+                                    <p className="mt-1 text-sm">{milestone.notes}</p>
+                                </div>
+                            }
+                            key={milestone.id}
+>
+
                                 <div
                                     className={`absolute top-1/2 transform -translate-y-1/2 cursor-pointer ${isSelected ? 'ring-2 ring-primary-500' : ''}`}
                                     style={{ left: `${(index / (milestones.length - 1)) * 100}%` }}
