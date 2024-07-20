@@ -3,7 +3,7 @@ import { Image } from "@nextui-org/react";
 
 const Hero: React.FC = () => {
   return (
-    <div className="text-center flex  items-center justify-center h-screen">
+    <div className="text-center flex p-5 items-center justify-center h-screen">
         
             
             <Image
@@ -11,22 +11,23 @@ const Hero: React.FC = () => {
                 width={600}
                 height={800}
                 rounded-r-full z-30 object-scale-down
-                src="/cool-egg.jpg"
+                src="/logo.svg"
                 alt="NextUI Album Cover"
                 className="m-5"
             />
             <div className="items-center justify-center z-40 space-y-16">
-                <h1 className="items-center justify-center font-bold text-9xl -ml-10 z-40">
-                        Songbirds
+                <h1 className="items-center justify-center font-bold text-9xl -ml-10 z-40 text-primary">
+                        ChandyMandy
                         
                 </h1>
-                <h1 className="items-center italic justify-center font-bold text-9xl -ml-10 z-40  text-accent1  ">
-                    Giving a Voice to the Voiceless
+                <h1 className="items-center italic justify-center font-bold text-9xl -ml-10 z-40 pl-5 text-accent1 text-secondary" >
+                    She Chandy till I Mandy
                     
                 </h1>
                 <h2 className="text-2xl text-center tracking-wide mr-3 px-32">
-                    By leveraging blockchain's immutable ledger, we empower individuals and 
-                    communities to address issues like corruption, poverty, and inequality. 
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam illo 
+                    facilis adipisci dolorum eveniet laboriosam, dignissimos cumque ea aliquam itaque ducimus 
+                    corporis tempora repellendus, maiores mollitia labore ipsa vero expedita. 
                 </h2>
             </div>
             

@@ -10,7 +10,7 @@ import {
 
 const Nav: React.FC = () => {
   return (
-    <Navbar maxWidth="full" >
+    <Navbar maxWidth="full" classNames={{"wrapper": "p-5"}}>
       <NavbarBrand>
         <i className="fa-regular fa-handshake gap-4"></i>
         <p className="font-bold text-inherit"> RewardTix </p>
@@ -19,27 +19,27 @@ const Nav: React.FC = () => {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
           <Link color="foreground" href="#">
-            Features
+            Change
           </Link>
         </NavbarItem>
         <NavbarItem isActive>
           <Link href="#" aria-current="page" color="secondary">
-            Customers
+            Change
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="#">
-            Integrations
+            Change
           </Link>
         </NavbarItem>
       </NavbarContent>
 
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
+          <Link href="/login">Login</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
+          <Button as={Link} color="primary" href="/signUp" variant="flat">
             Sign Up
           </Button>
         </NavbarItem>

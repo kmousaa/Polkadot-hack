@@ -8,17 +8,23 @@ import { Button } from "@nextui-org/button";
 import Nav from "@/components/nav-bar";
 import { ParallaxProvider, Parallax } from "react-scroll-parallax";
 import Hero from "@/components/hero";
+import InfoHero from "@/components/infoHero";
 
 export default function Home() {
   return (
     <ParallaxProvider>
-      <Parallax speed={-10}>
+      <Nav />
+      <Parallax speed={-15}>
         <div>
-          <Nav />
+          
           <div className="flex bg-background flex-col h-screen items-center justify-center gap-4 py-8 md:py-10">
             <Hero/>
+            
             <Button color="primary">Hello World!</Button>
             <Button color="secondary">Hello World!</Button>
+          </div>
+          <div className="flex bg-background flex-col h-screen items-center justify-center gap-4 py-8 md:py-10">
+            <InfoHero/>
           </div>
         </div>
       </Parallax>
