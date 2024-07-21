@@ -85,24 +85,29 @@ export default function Page() {
 
         <p className="text-[2.2rem] text-text font-thin tracking-wider">Projects</p>
 
-        <div className="flex flex-col gap-4">
-          {projects.map((project) => (
-            <div className="flex flex-col gap-1.5 items-end">
-              <Card className="w-full bg-light-background" shadow="sm">
-                <CardBody className="flex flex-col items-start gap-3 overflow-hidden">
-                  <div className="flex justify-between w-full items-center">
-                    <p className="text-text text-md capitalize">{project.name}</p>
-                    <Link showAnchorIcon href={`/projects/0x${(project.id).toString(16)}`}/>
-                  </div>
-                  <Divider/>
-                  <p className="text-neutral-500 text-xs">{project.description}</p>
-                  <div className="flex justify-end w-full">
-                  <Snippet size="sm" codeString={project.contractAddress} symbol="> " color="primary">{project.contractAddress.slice(0, 8)}</Snippet>
-                  </div>
-                </CardBody>
-              </Card>
-            </div>
-          ))}
+        <div className="flex flex-col gap-10 items-center">
+          { loading ? <Spinner color="secondary"/> :
+
+            projects.map((project) => (
+              <div className="flex flex-col gap-2.5 items-end w-full">
+                <Card className="w-full bg-light-background" shadow="sm">
+                  <CardBody className="flex flex-col items-start gap-3 overflow-hidden">
+                    <div className="flex justify-between w-full items-center">
+                      <p className="text-text text-md capitalize">{project.name}</p>
+                      <Link showAnchorIcon href={`/projects/0x${(project.id).toString(16)}`}/>
+                    </div>
+                    <Divider/>
+                    <p className="text-neutral-500 text-xs">{project.description}</p>
+                    <div className="flex justify-end w-full gap-3 items-center">
+                      <p className="text-sm text-primary text-opacity-50">{project.tickets.reduce((a, b) => a + b.reward, BigInt(0)).toString()} DEV Available</p>
+                    <Snippet size="sm" codeString={project.contractAddress} symbol="> " color="primary">{project.contractAddress.slice(0, 8)}</Snippet>
+                    </div>
+                  </CardBody>
+                </Card>
+                <p className="text-right text-xs text-neutral-500">{new Date().toDateString()}</p>
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>

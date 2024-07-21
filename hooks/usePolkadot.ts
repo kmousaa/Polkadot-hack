@@ -149,6 +149,7 @@ export default function usePolkadot() {
   }
 
   async function getProjects() {
+    setLoading(true)
     const nProjects = await readContract(config, {
       abi: factory.output.abi,
       address: factoryAddress,
@@ -211,6 +212,7 @@ export default function usePolkadot() {
       return null
     }));
 
+    setLoading(false)
     setProjects(projects.filter(v => v !== null) as Project[])
   }
 
