@@ -2,8 +2,7 @@
 import React, { useState } from 'react';
 import Card from './card'; // Adjust the path based on your file structure
 import Image from 'next/image';
-import { Button } from '@nextui-org/button';
-import { Divider } from '@nextui-org/react';
+import { Button, Modal, Input, Textarea, Dropdown, Divider } from '@nextui-org/react';
 
 // Updated list of tags
 const tags = [
@@ -21,19 +20,19 @@ const users = [
       {
         "id": "1",
         "goal": 3000,
-        "current": 1200,
+        "current": 3000,
         "notes": "Recording studio costs for initial album tracks. Includes recording 'Sunset Serenade'."
       },
       {
         "id": "2",
         "goal": 5000,
-        "current": 1500,
+        "current": 5000,
         "notes": "Promotion and marketing expenses. Aims to promote 'Ocean Breeze'."
       },
       {
         "id": "3",
         "goal": 7000,
-        "current": 2500,
+        "current": 7000,
         "notes": "Cover art design, printing physical copies, and digital distribution for tracks including 'Tropical Nights'."
       },
       {
@@ -45,9 +44,15 @@ const users = [
       {
         "id": "5",
         "goal": 2000,
-        "current": 500,
+        "current": 0,
         "notes": "Merchandise production for album promotion, including items related to 'Ocean Drift'."
-      }
+      },
+        {
+            "id": "6",
+            "goal": 9000,
+            "current": 2000,
+            "notes": "Release the Deluxe Edition of the album with bonus tracks."
+        }
     ],
     "brief": "Help Pink Sea release their debut album! Your support will cover recording, marketing, and more. Join us on this musical journey!",
     "tags": ["MUSIC", "ALBUM", "FUNDRAISER"]
@@ -61,7 +66,7 @@ const users = [
       {
         "id": "1",
         "goal": 5000,
-        "current": 2000,
+        "current": 5000,
         "notes": "Initial development and design of the Web3 platformer. This includes prototyping and planning."
       },
       {
@@ -125,7 +130,7 @@ const users = [
       {
         "id": "5",
         "goal": 2000,
-        "current": 500,
+        "current": 2000,
         "notes": "Holiday gifts and celebrations for the children to make special occasions memorable."
       }
     ],
@@ -138,36 +143,49 @@ const users = [
     "Ranking": 3,
     "profilePicture": "https://avatar.iran.liara.run/public/4",
     "milestones": [
-      {
-        "id": "1",
-        "goal": 2500,
-        "current": 1000,
-        "notes": "Production costs for deluxe album tracks, including recording and mixing of 'Daylight'."
-      },
-      {
-        "id": "2",
-        "goal": 3500,
-        "current": 1500,
-        "notes": "Music video production for new singles such as 'Nightfall'."
-      },
-      {
-        "id": "3",
-        "goal": 3000,
-        "current": 1200,
-        "notes": "Promotion and marketing for the deluxe album, aiming to highlight 'Midnight'."
-      },
-      {
-        "id": "4",
-        "goal": 4000,
-        "current": 1800,
-        "notes": "Special edition packaging and distribution for the deluxe album featuring 'Sunrise'."
-      },
-      {
-        "id": "5",
-        "goal": 2000,
-        "current": 500,
-        "notes": "Exclusive fan experiences and behind-the-scenes content related to 'Twilight'."
-      }
+        {
+            "id": "1",
+            "goal": 100,
+            "current": 100,
+            "notes": "Release of the song Daylight."
+        },
+        {
+            "id": "2",
+            "goal": 200,
+            "current": 150,
+            "notes": "Release of the song Nightfall."
+        },
+        {
+            "id": "3",
+            "goal": 300,
+            "current": 0,
+            "notes": "Release of the song Sunrise."
+        },
+        {
+            "id": "4",
+            "goal": 400,
+            "current": 0,
+            "notes": "Release of the song Sunset."
+        },
+        {
+            "id": "5",
+            "goal": 500,
+            "current": 0,
+            "notes": "Release of the song Twilight."
+        },
+        {
+            "id": "6",
+            "goal": 600,
+            "current": 0,
+            "notes": "Release of the song Dusk."
+        },
+        {
+            "id": "7",
+            "goal": 700,
+            "current": 0,
+            "notes": "Release of the song Dawn."
+        }
+      
     ],
     "brief": "Help The Weekday release a deluxe version of their album! Your support will cover production, promotion, and special edition content.",
     "tags": ["MUSIC", "ALBUM", "FUNDRAISER"]
@@ -181,7 +199,7 @@ const users = [
       {
         "id": "1",
         "goal": 15000,
-        "current": 3000,
+        "current": 15000,
         "notes": "Initial development, setup, and team hiring for the blockchain tech startup."
       },
       {
@@ -221,13 +239,13 @@ const users = [
       {
         "id": "1",
         "goal": 10000,
-        "current": 2500,
+        "current": 2000,
         "notes": "Initial funds for design and planning of the new community football stadium."
       },
       {
         "id": "2",
         "goal": 20000,
-        "current": 5000,
+        "current": 15000,
         "notes": "Construction costs for the football stadium, including infrastructure and seating."
       },
       {
@@ -239,7 +257,7 @@ const users = [
       {
         "id": "4",
         "goal": 15000,
-        "current": 3000,
+        "current": 7000,
         "notes": "Landscaping, parking facilities, and community amenities around the stadium."
       },
       {
@@ -322,7 +340,9 @@ export default function Page() {
         </div>
         <Divider />
         {/* Hashtags */}
-        <h2 className="text-xl font-semibold mb-4 text-primary-foreground pt-4"># Hashtags</h2>
+
+
+        <h2 className="text-xl font-semibold mb-4 text-primary-foreground "># Hashtags</h2>
         <div className="flex flex-col space-y-3">
           <Button 
             color="primary" 
