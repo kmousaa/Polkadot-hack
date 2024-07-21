@@ -10,18 +10,18 @@ const Hero: React.FC = () => {
                 isBlurred
                 width={600}
                 height={800}
-                rounded-r-full z-30 object-scale-down
+                
                 src="/logo.svg"
                 alt="NextUI Album Cover"
                 className="m-5"
             />
             <div className="items-center justify-center z-40 space-y-16">
                 <h1 className="items-center justify-center font-bold text-9xl -ml-10 z-40 text-primary">
-                        ChandyMandy
+                        Branchy_Dot
                         
                 </h1>
                 <h1 className="items-center italic justify-center font-bold text-9xl -ml-10 z-40 pl-5 text-accent1 text-secondary" >
-                    She Chandy till I Mandy
+                    Supporting Projects
                     
                 </h1>
                 <h2 className="text-2xl text-center tracking-wide mr-3 px-32">
