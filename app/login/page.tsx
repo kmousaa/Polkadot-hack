@@ -9,8 +9,6 @@ import {Card, CardBody, Divider} from "@nextui-org/react";
 import Nav from "@/components/nav-bar";
 import React, { useEffect, useState } from 'react';
 
-import { web3Enable, web3AccountsSubscribe } from '@polkadot/extension-dapp';
-
 
 
 

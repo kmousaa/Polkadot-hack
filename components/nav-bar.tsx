@@ -40,7 +40,7 @@ const Nav: React.FC = () => {
 
       <NavbarContent justify="end">
         <NavbarItem>
-          {/* <ConnectButton/> */}
+          <ConnectButton/>
         </NavbarItem>
       </NavbarContent>
     </Navbar>

@@ -5,7 +5,6 @@ import clsx from "clsx";
 
 import { Providers } from "./providers";
 import { Poppins } from "next/font/google";
-import Nav from "@/components/nav-bar";
 
 export const fontPoppins = Poppins({
   subsets: ["latin"],
