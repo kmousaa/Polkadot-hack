@@ -25,9 +25,10 @@ const Hero: React.FC = () => {
                     
                 </h1>
                 <h2 className=" items-center justify-center text-2xl text-center font-light tracking-wide mr-3 px-32">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam illo 
-                    facilis adipisci dolorum eveniet laboriosam, dignissimos cumque ea aliquam itaque ducimus 
-                    corporis tempora repellendus, maiores mollitia labore ipsa vero expedita. 
+                Our fully extensible crowdfunding platform empowers users to fund projects of their choice while enabling creators to post projects seeking funding. 
+                To enhance user engagement and project accountability, milestones are established for projects, allowing users to track progress effectively.
+                The platform ensures complete transparency with all transactions being public and non-repudiable. 
+                Task smart contracts serve a dual purpose: facilitating trustless transactions through escrow mechanisms and allowing for customization of each task's properties, such as the currency used. 
                 </h2>
             </div>
             
