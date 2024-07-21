@@ -5,11 +5,25 @@ import { Snippet } from "@nextui-org/snippet";
 import { Code } from "@nextui-org/code";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { Button } from "@nextui-org/button";
+import Nav from "@/components/nav-bar";
+import { ParallaxProvider, Parallax } from "react-scroll-parallax";
+import Hero from "@/components/hero";
+import InfoHero from "@/components/infoHero";
 
 export default function Home() {
   return (
-    <div className="flex flex-col h-screen items-center justify-center gap-4 py-8 md:py-10">
-      <Button>Hello World!</Button>
-    </div>
+    <>
+      <Nav />
+        <div>
+          <div className="flex bg-background flex-col h-screen items-center justify-center gap-4 py-8 md:py-10">
+            <Hero/>
+            <Button color="primary">Hello World!</Button>
+            <Button color="secondary">Hello World!</Button>
+          </div>
+          <div className="flex bg-background flex-col h-screen items-center justify-center gap-4 py-8 md:py-10">
+            <InfoHero/>
+          </div>
+        </div>
+    </>    
   );
 }
