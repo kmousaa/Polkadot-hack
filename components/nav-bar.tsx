@@ -1,3 +1,5 @@
+
+"use client"
 import React from "react";
 import { 
   Navbar, 
@@ -8,6 +10,7 @@ import {
   Button
 } from "@nextui-org/react";
 import { Logo } from "./logo";
+import ConnectButton from "./ConnectButton";
 
 const Nav: React.FC = () => {
   return (
@@ -36,13 +39,8 @@ const Nav: React.FC = () => {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="/login">Login</Link>
-        </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="/signUp" variant="flat">
-            Sign Up
-          </Button>
+          {/* <ConnectButton/> */}
         </NavbarItem>
       </NavbarContent>
     </Navbar>

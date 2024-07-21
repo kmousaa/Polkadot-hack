@@ -12,7 +12,6 @@ import InfoHero from "@/components/infoHero";
 
 export default function Home() {
   return (
-<<<<<<< HEAD
     <ParallaxProvider>
       <Nav />
       <Parallax speed={-10}>
@@ -29,10 +28,5 @@ export default function Home() {
       </Parallax>
     </ParallaxProvider>
     
-=======
-    <div className="flex flex-col h-screen items-center justify-center gap-4 py-8 md:py-10">
-      <Button>Hello World!</Button>
-    </div>
->>>>>>> main
   );
 }
