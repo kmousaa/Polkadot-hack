@@ -426,7 +426,7 @@ export default function Page() {
           onClick={() => setIsFormVisible(prev => !prev)} // Toggle form visibility
           className="mb-16"
         >
-          {isFormVisible ? 'Close Pool Form' : 'Add New Pool'}
+          {isFormVisible ? 'Close Pool Form' : 'Add New Story'}
         </Button>
 
         {/* New Pool Form */}
